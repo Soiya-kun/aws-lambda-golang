@@ -1,0 +1,14 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir:
+      /var/task
+    command:
+      - main
+    volumes:
+      - ./src:/var/task # ${LAMBDA_TASK_ROOT}は/var/taskだったので/var/taskを指定.
+    ports:
+      - 9000:8080

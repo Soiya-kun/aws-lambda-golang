@@ -1,20 +1,21 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
 type MyEvent struct {
-	Name string `json:"What is your name?"`
-	Age  int    `json:"How old are you?"`
+	Name string `json:"name"`
+	Age  int    `json:"age"`
 }
 
 type MyResponse struct {
-	Message string `json:"Answer:"`
+	Message string `json:"answer"`
 }
 
-func HandleLambdaEvent(event MyEvent) (MyResponse, error) {
+func HandleLambdaEvent(ctx context.Context, event MyEvent) (MyResponse, error) {
 	return MyResponse{Message: fmt.Sprintf("%s is %d years old!", event.Name, event.Age)}, nil
 }
 
